@@ -1,4 +1,4 @@
-from stats import getWordCount, getCharacterCount
+from stats import getWordCount, getCharacterCount, sortCharacterDictionaries
 
 def getBookText(filepath: str) -> str:
     with open(filepath) as f:
@@ -6,7 +6,13 @@ def getBookText(filepath: str) -> str:
 
 def main():
     bookpath: str = r"./books/frankenstein.txt"
-    print(f"Found {getWordCount(getBookText(bookpath))} total words")
-    print(getCharacterCount(getBookText(bookpath)))
+    booktext: str = getBookText(bookpath)
+    print("---------- Word Count ----------")
+    print(f"Found {getWordCount(booktext)} total words")
+    print("---------- Character Count ----------")
+    sortedCharacterCount: list[dict[str, str], dict[str, int]] = sortCharacterDictionaries(getCharacterCount(booktext))
+    for element in sortedCharacterCount:
+        if element["name"].isalpha():
+            print(f"{element["name"]}: {element["num"]}")
 
 main()

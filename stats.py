@@ -10,3 +10,16 @@ def getCharacterCount(text: str) -> int:
         characterCount[character] += 1
 
     return characterCount
+
+def sortOn(items):
+    return items["num"]
+
+def sortCharacterDictionaries(characterCount: dict[str,int]) -> list[dict[str, str], dict[str,int]]:
+    dictionaryList: list[dict[str, str], dict[str, int]] = []
+    for character, count in characterCount.items():
+        dictionaryList.append({"name": character, "num": count})
+
+    dictionaryList.sort(reverse=True, key=sortOn)
+    return dictionaryList
+
+
