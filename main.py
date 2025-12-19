@@ -1,3 +1,4 @@
+import sys
 from stats import getWordCount, getCharacterCount, sortCharacterDictionaries
 
 def getBookText(filepath: str) -> str:
@@ -5,7 +6,11 @@ def getBookText(filepath: str) -> str:
         return f.read()
 
 def main():
-    bookpath: str = r"./books/frankenstein.txt"
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    
+    bookpath: str = sys.argv[1] # second command line input
     booktext: str = getBookText(bookpath)
     print("---------- Word Count ----------")
     print(f"Found {getWordCount(booktext)} total words")
